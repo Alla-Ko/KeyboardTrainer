@@ -1,0 +1,126 @@
+﻿<Window
+    x:Class="KeybordTrainer.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:KeybordTrainer"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Keybord Trainer"
+    Width="700"
+    Height="700"
+    Background="{StaticResource BackgroundBrush}"
+    FontFamily="{StaticResource HangyabolyFont}"
+    FontSize="20"
+    Foreground="{StaticResource ForegroundBrush}"
+    Icon="res\images\icon.png"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <!--  Define the DataTemplate for ListView items using Grid  -->
+        <DataTemplate x:Key="PlayerDataTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    Grid.Column="0"
+                    Margin="0"
+                    Padding="5"
+                    HorizontalAlignment="Left"
+                    Text="{Binding UserName}" />
+                <Button
+                    Grid.Column="1"
+                    Width="80"
+                    Height="40"
+                    Margin="15,0,0,0"
+                    Padding="2"
+                    Click="DeleteButton_Click"
+                    Content="Delete"
+                    Cursor="" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="163*" />
+            <RowDefinition Height="181*" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+
+
+        <Grid
+            Grid.Row="3"
+            Grid.RowSpan="2"
+            Margin="0,181,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="200" />
+            </Grid.ColumnDefinitions>
+            <Image
+                Grid.Column="0"
+                Margin="-12,18,12,-18"
+                Cursor=""
+                RenderTransformOrigin="0.5,0.5"
+                Source="/res/images/paws.png" />
+            <Image
+                Grid.Column="2"
+                Margin="15,15,15,15"
+                RenderTransformOrigin="0.5,0.5"
+                Source="/res/images/icon.png" />
+            <Button
+                x:Name="StartButton"
+                Grid.Column="1"
+                Margin="15,55,15,55"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Click="StartButton_Click"
+                Content="Let's go train!"
+                Cursor="Hand" />
+        </Grid>
+        <ListView
+            x:Name="PlayersListView"
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Width="auto"
+            Height="auto"
+            Margin="15,15,15,15"
+            Background="{StaticResource LightBrush}"
+            ItemTemplate="{StaticResource PlayerDataTemplate}"
+            PreviewMouseWheel="ListView_PreviewMouseWheel" MouseDoubleClick="PlayersListView_MouseDoubleClick" />
+        <Label
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Choose a player"
+            FontSize="40"
+            FontWeight="Bold" />
+        <Grid Grid.Row="1" Margin="55,15,55,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition />
+
+            </Grid.ColumnDefinitions>
+            <TextBox
+                x:Name="NewNameTextBox"
+                Grid.Column="0"
+                Margin="0,0,0,0"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Background="{StaticResource LightBrush}"
+                TextAlignment="Center" />
+            <Button
+                Grid.Column="1"
+                Width="185"
+                Height="50"
+                Margin="10,0,0,0"
+                Padding="5"
+                HorizontalAlignment="Left"
+                Click="Button_Click"
+                Content="Create New Player" />
+        </Grid>
+    </Grid>
+</Window>
